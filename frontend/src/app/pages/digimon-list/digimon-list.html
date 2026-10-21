@@ -1,0 +1,11 @@
+<p>digimon-list works!</p>
+@if (digimonCharacters.dataList.isLoading()) {
+  <div>Se esta consultando la información...</div>
+}
+@if (digimonCharacters.dataList.error()) {
+  <div> Ocurrió un error al consultar la información...</div>
+}
+
+@if (digimonCharacters.dataList.hasValue()) {
+  <div>{{ digimonCharacters.dataList.value() | json }}</div>
+}

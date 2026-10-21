@@ -1,0 +1,18 @@
+<h1>Backend local</h1>
+
+@if (productsService.productsResource.isLoading()) {
+  <p role="status">Cargando productos...</p>
+}
+
+@if (productsService.productsResource.error()) {
+  <p role="alert">No se pudieron cargar los productos. Comprueba que el backend esté encendido.</p>
+}
+
+@if (productsService.productsResource.hasValue()) {
+  @let response = productsService.productsResource.value();
+  @for (product of response.data; track product.id) {
+  <div>{{ product.id }} {{ product.name }} {{ product.sku }} {{ product.category?.id ?? product.categoryId }}-{{ product.category?.name ?? 'Sin categoría' }}</div>
+  } @empty {
+  <p>No hay productos para mostrar.</p>
+  }
+}
